@@ -1,0 +1,25 @@
+{
+    "version": 2,
+    "project": "yohidon-api",
+    "builds": [
+      {
+        "src": "/health/*.go",
+        "use": "@vercel/go"
+      },
+      {
+        "src": "/category/*.go",
+        "use": "@vercel/go"
+      }
+    ],
+    "routes": [
+      {
+        "src": "/health",
+        "dest": "/health"
+      },
+      {
+        "src": "/users/(?<id>[^/]*)/categories",
+        "methods": ["POST"],
+        "dest": "/category"
+      }
+    ]
+}
