@@ -9,12 +9,21 @@
       {
         "src": "/category/*.go",
         "use": "@vercel/go"
+      },
+      {
+        "src": "/category/get/*.go",
+        "use": "@vercel/go"
       }
     ],
     "routes": [
       {
         "src": "/health",
         "dest": "/health"
+      },
+      {
+        "src": "/users/(?<id>[^/]*)/categories",
+        "methods": ["GET"],
+        "dest": "/category/get"
       },
       {
         "src": "/users/(?<id>[^/]*)/categories",
