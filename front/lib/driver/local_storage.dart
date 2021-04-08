@@ -9,4 +9,8 @@ class LocalStorage {
   Future<void> save(UserCredential userCredential) async {
     this.userCredential = userCredential;
   }
+
+  Future<UserCredential?> get() async {
+    return this.userCredential;
+  }
 }

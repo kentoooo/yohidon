@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:yohidon/domain/category.dart';
 import 'package:yohidon/domain/study_log.dart';
 import 'package:yohidon/domain/study_time.dart';
-import 'package:yohidon/domain/user_id.dart';
 import 'package:yohidon/injector.dart';
 import 'package:yohidon/state/register_view_state.dart';
 import 'package:yohidon/usecase/change_slider_usecase.dart';
@@ -54,7 +53,6 @@ class RegisterPage extends StatelessWidget {
                             ),
                             StudyTime(state.rating),
                           ),
-                        UserId("aaaa"),
                       );
                     }
                 )

@@ -8,6 +8,7 @@ import 'package:yohidon/page/register_page.dart';
 import 'package:yohidon/port/user_credential_port.dart';
 import 'package:yohidon/presenter/login_presenter.dart';
 import 'package:yohidon/state/register_view_state.dart';
+import 'package:yohidon/usecase/get_category_usecase.dart';
 
 @injectable
 class LoginUsecase {
@@ -28,6 +29,7 @@ class LoginUsecase {
           ),
         )
     );
+    await getIt<GetCategoryUsecase>().execute();
   }
 
   void inputMailAddress(MailAddress mailAddress) =>

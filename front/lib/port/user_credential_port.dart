@@ -10,6 +10,7 @@ import 'package:yohidon/driver/local_storage.dart';
 abstract class UserCredentialPort {
   Future<UserCredential> authn(MailAddress mailAddress, Password password);
   Future<void> save(UserCredential userCredential);
+  Future<UserCredential?> get();
 }
 
 @Injectable(as: UserCredentialPort)
@@ -28,6 +29,11 @@ class UserCredentialGateway extends UserCredentialPort {
   @override
   Future<void> save(UserCredential userCredential) async {
     _localStorage.save(userCredential);
+  }
+
+  @override
+  Future<UserCredential?> get() async {
+    return await _localStorage.get();
   }
 
 }
