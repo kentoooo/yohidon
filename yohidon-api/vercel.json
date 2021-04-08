@@ -13,6 +13,10 @@
       {
         "src": "/category/get/*.go",
         "use": "@vercel/go"
+      },
+      {
+        "src": "/study-log/post/*.go",
+        "use": "@vercel/go"
       }
     ],
     "routes": [
@@ -29,6 +33,11 @@
         "src": "/users/(?<id>[^/]*)/categories",
         "methods": ["POST"],
         "dest": "/category"
+      },
+      {
+        "src": "/users/(?<id>[^/]*)/studyLogs",
+        "methods": ["POST"],
+        "dest": "/study-log/post"
       }
     ]
 }

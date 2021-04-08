@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yohidon/domain/category.dart';
+import 'package:yohidon/domain/study_log.dart';
 import 'package:yohidon/domain/study_time.dart';
+import 'package:yohidon/domain/user_id.dart';
 import 'package:yohidon/injector.dart';
 import 'package:yohidon/state/RegisterViewState.dart';
 import 'package:yohidon/usecase/change_slider_usecase.dart';
 import 'package:yohidon/usecase/select_category_usecase.dart';
+import 'package:yohidon/usecase/study_register_usecase.dart';
 
 class RegisterPage extends StatelessWidget {
   @override
@@ -36,6 +39,25 @@ class RegisterPage extends StatelessWidget {
                   max: 12.0,
                   label: "${state.rating}",
                 ),
+                ElevatedButton(
+                    child: Text('登録'),
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.orange,
+                      onPrimary: Colors.white
+                    ),
+                    onPressed: (){
+                      getIt<StudyRegisterUsecase>().execute(
+                          StudyLog(
+                            Category(
+                              CategoryId(state.selectedItem!.id),
+                              CategoryName(state.selectedItem!.name),
+                            ),
+                            StudyTime(state.rating),
+                          ),
+                        UserId("aaaa"),
+                      );
+                    }
+                )
               ]
             ),
           ),
