@@ -12,6 +12,7 @@ class RegisterViewState extends ChangeNotifier with State {
 
   SelectItems? selectItems;
   SelectItem? selectedItem;
+  double rating = 0.0;
 }
 
 class SelectItems {

@@ -1,5 +1,6 @@
 import 'package:injectable/injectable.dart';
 import 'package:yohidon/domain/category.dart';
+import 'package:yohidon/domain/study_time.dart';
 import 'package:yohidon/state/RegisterViewState.dart';
 
 @injectable
@@ -16,6 +17,11 @@ class RegisterPresenter {
 
   void setSelectedCategory(Category category) {
     _state.selectedItem = SelectItem(category.categoryId.value, category.categoryName.value);
+    _state.updateComplete();
+  }
+
+  void setRate(StudyTime studyTime) {
+    _state.rating = studyTime.value;
     _state.updateComplete();
   }
 }
