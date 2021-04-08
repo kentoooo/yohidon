@@ -1,10 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:yohidon/page/activity_page.dart';
-import 'package:yohidon/page/record_page.dart';
+import 'package:provider/provider.dart';
+import 'package:yohidon/injector.dart';
 import 'package:yohidon/page/register_page.dart';
+import 'package:yohidon/state/RegisterViewState.dart';
+import 'package:yohidon/usecase/get_category_usecase.dart';
 
-void main() {
+void main() async {
+  configureDependencies();
+  await getIt<GetCategoryUsecase>().execute();
   runApp(MyApp());
 }
 
@@ -17,49 +21,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key, this.title}) : super(key: key);
-  final String? title;
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _selectedIndex = 1;
-
-  List<Widget> _widgetOptions = [
-    RecordPage(),
-    RegisterPage(),
-    ActivityPage(),
-  ];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: _widgetOptions.elementAt(_selectedIndex),
-      bottomNavigationBar: BottomNavigationBar(
-        items: [
-          BottomNavigationBarItem(
-              icon: Icon(Icons.insert_chart_outlined), label: '記録'),
-          BottomNavigationBarItem(icon: Icon(Icons.add_circle_outline), label: '登録'),
-          BottomNavigationBarItem(icon: Icon(Icons.face), label: 'アクティビティ')
+      home: MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (_) => getIt<RegisterViewState>()),
         ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.blue,
-        onTap: _onItemTapped,
-      ),
+        child: RegisterPage(),
+      ) ,
     );
   }
 }
