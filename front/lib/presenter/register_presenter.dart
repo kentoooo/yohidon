@@ -1,7 +1,7 @@
 import 'package:injectable/injectable.dart';
 import 'package:yohidon/domain/category.dart';
 import 'package:yohidon/domain/study_time.dart';
-import 'package:yohidon/state/RegisterViewState.dart';
+import 'package:yohidon/state/register_view_state.dart';
 
 @injectable
 class RegisterPresenter {

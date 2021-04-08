@@ -1,9 +1,10 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
+import 'package:yohidon/state/state.dart';
 
 @singleton
-class RegisterViewState extends ChangeNotifier with State {
+class RegisterViewState extends ChangeNotifier with ViewState {
 
   @override
   void updateComplete() {
@@ -20,7 +21,7 @@ class SelectItems {
   SelectItems(this.values);
 }
 
-class SelectItem extends Equatable with ChangeNotifier, State {
+class SelectItem extends Equatable with ChangeNotifier, ViewState {
   final String id;
   final String name;
 
@@ -33,9 +34,4 @@ class SelectItem extends Equatable with ChangeNotifier, State {
   void updateComplete() {
     notifyListeners();
   }
-}
-
-
-abstract class State {
-  void updateComplete();
 }
