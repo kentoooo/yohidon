@@ -15,19 +15,8 @@ class _RecordPageState extends State<RecordPage> {
   Widget build(BuildContext context) {
     return Container(
       constraints: BoxConstraints.expand(),
-      color: Colors.yellow,
-      child: Center(child:
-          Slider(
-            value: rating,
-            onChanged: (newRating) {
-              print(newRating);
-              setState(() => rating = newRating);
-            },
-            divisions: 24,
-            min: 0.0,
-            max: 12.0,
-            label: "$rating",
-          ),
+      color: Colors.purple,
+      child: Center(child: Text('record page'),
       )
     );
   }

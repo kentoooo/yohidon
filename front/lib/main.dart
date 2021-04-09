@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:yohidon/injector.dart';
 import 'package:yohidon/page/login_page.dart';
 import 'package:yohidon/page/register_page.dart';
+import 'package:yohidon/state/home_view_state.dart';
 import 'package:yohidon/state/login_view_state.dart';
 import 'package:yohidon/state/register_view_state.dart';
 import 'package:yohidon/usecase/get_category_usecase.dart';
@@ -26,7 +27,8 @@ class MyApp extends StatelessWidget {
       home: MultiProvider(
         providers: [
           ChangeNotifierProvider(create: (_) => getIt<RegisterViewState>()),
-          ChangeNotifierProvider(create: (_) => getIt<LoginViewState>())
+          ChangeNotifierProvider(create: (_) => getIt<LoginViewState>()),
+          ChangeNotifierProvider(create: (_) => getIt<HomeViewState>())
         ],
         child:  LoginPage(),
       ),
