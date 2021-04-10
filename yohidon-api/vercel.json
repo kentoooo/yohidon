@@ -19,7 +19,7 @@
         "use": "@vercel/go"
       },
       {
-        "src": "/study-log/get/*.go",
+        "src": "/activity/get/*.go",
         "use": "@vercel/go"
       }
     ],
@@ -39,9 +39,9 @@
         "dest": "/category"
       },
       {
-        "src": "/studyLogs",
+        "src": "/activities",
         "methods": ["GET"],
-        "dest": "/study-log/get"
+        "dest": "/activity/get"
       },
       {
         "src": "/users/(?<id>[^/]*)/studyLogs",
