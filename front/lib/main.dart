@@ -4,11 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yohidon/injector.dart';
 import 'package:yohidon/page/login_page.dart';
-import 'package:yohidon/page/register_page.dart';
+import 'package:yohidon/state/activity_view_state.dart';
 import 'package:yohidon/state/home_view_state.dart';
 import 'package:yohidon/state/login_view_state.dart';
 import 'package:yohidon/state/register_view_state.dart';
-import 'package:yohidon/usecase/get_category_usecase.dart';
 
 void main() async {
   configureDependencies();
@@ -28,9 +27,10 @@ class MyApp extends StatelessWidget {
         providers: [
           ChangeNotifierProvider(create: (_) => getIt<RegisterViewState>()),
           ChangeNotifierProvider(create: (_) => getIt<LoginViewState>()),
-          ChangeNotifierProvider(create: (_) => getIt<HomeViewState>())
+          ChangeNotifierProvider(create: (_) => getIt<HomeViewState>()),
+          ChangeNotifierProvider(create: (_) => getIt<ActivityViewState>()),
         ],
-        child:  LoginPage(),
+        child: LoginPage(),
       ),
     );
   }

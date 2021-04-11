@@ -23,7 +23,6 @@ class LoginPage extends StatelessWidget {
                 }
               },
               onChanged: (input) => getIt<LoginUsecase>().inputMailAddress(MailAddress(input)),
-//              onSaved: (input) => _email = input,
               decoration: InputDecoration(labelText: 'Email'),
             ),
             TextFormField(
@@ -33,7 +32,6 @@ class LoginPage extends StatelessWidget {
                 }
               },
               onChanged: (input) => getIt<LoginUsecase>().inputPassword(Password(input)),
-//              onSaved: (input) => _password = input,
               decoration: InputDecoration(labelText: 'Password'),
               obscureText: true,
             ),

@@ -48,7 +48,7 @@ func Handler(w http.ResponseWriter, req *http.Request) {
 		activities = append(activities, *activity)
 	}
 
-	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 	bytes, _ := json.Marshal(Activities{activities})
 	fmt.Fprint(w, string(bytes))
 }
