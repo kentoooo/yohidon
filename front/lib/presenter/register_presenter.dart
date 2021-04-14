@@ -24,5 +24,10 @@ class RegisterPresenter {
     _state.rating = studyTime.value;
     _state.updateComplete();
   }
+
+  void setCategoryName(CategoryName categoryName) {
+    _state.categoryName = categoryName.value;
+    _state.updateComplete();
+  }
 }
 

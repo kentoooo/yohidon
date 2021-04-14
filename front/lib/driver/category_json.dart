@@ -20,3 +20,12 @@ class CategoryJson {
 
   CategoryJson(this.id, this.name);
 }
+
+@JsonSerializable()
+class PostCategoryJson {
+  final String categoryName;
+
+  Map<String, dynamic> toJson() => _$PostCategoryJsonToJson(this);
+
+  PostCategoryJson(this.categoryName);
+}

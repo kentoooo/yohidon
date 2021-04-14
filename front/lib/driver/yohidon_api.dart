@@ -26,4 +26,12 @@ class YohidonApi {
       headers: {"Content-Type": "application/json"},
     );
   }
+
+  Future<void> postCategory(String userId, PostCategoryJson param) async {
+    await http.post(
+      Uri.https(endpoint, '/users/$userId/categories'),
+      body: json.encode(param.toJson()),
+      headers: {"Content-Type": "application/json"},
+    );
+  }
 }

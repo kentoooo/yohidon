@@ -31,3 +31,14 @@ Map<String, dynamic> _$CategoryJsonToJson(CategoryJson instance) =>
       'id': instance.id,
       'name': instance.name,
     };
+
+PostCategoryJson _$PostCategoryJsonFromJson(Map<String, dynamic> json) {
+  return PostCategoryJson(
+    json['categoryName'] as String,
+  );
+}
+
+Map<String, dynamic> _$PostCategoryJsonToJson(PostCategoryJson instance) =>
+    <String, dynamic>{
+      'categoryName': instance.categoryName,
+    };
