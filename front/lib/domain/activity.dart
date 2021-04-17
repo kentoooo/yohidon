@@ -44,7 +44,7 @@ class ActivityDate {
   }
 
   String toString() {
-    final format = DateFormat('yyyy-MM-dd');
+    final format = DateFormat('yyyy-MM-dd HH:mm');
     return format.format(value);
   }
 }
