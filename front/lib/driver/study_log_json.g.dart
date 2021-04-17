@@ -9,6 +9,7 @@ part of 'study_log_json.dart';
 StudyLogJson _$StudyLogJsonFromJson(Map<String, dynamic> json) {
   return StudyLogJson(
     json['categoryId'] as String,
+    json['memo'] as String,
     (json['time'] as num).toDouble(),
   );
 }
@@ -16,5 +17,6 @@ StudyLogJson _$StudyLogJsonFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$StudyLogJsonToJson(StudyLogJson instance) =>
     <String, dynamic>{
       'categoryId': instance.categoryId,
+      'memo': instance.memo,
       'time': instance.time,
     };

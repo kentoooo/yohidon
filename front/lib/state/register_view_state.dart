@@ -15,6 +15,7 @@ class RegisterViewState extends ChangeNotifier with ViewState {
   SelectItem? selectedItem;
   double rating = 0.0;
   String categoryName = "";
+  String memo = "";
 }
 
 class SelectItems {

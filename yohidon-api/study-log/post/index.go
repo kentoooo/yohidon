@@ -24,6 +24,7 @@ type Output struct {
 
 type Input struct {
 	CategoryId string `json:"categoryId"`
+	Memo string `json:"memo"`
 	Time float32 `json:"time"`
 }
 
@@ -34,11 +35,11 @@ func Handler(w http.ResponseWriter, req *http.Request) {
 	input := Input{}
 	json.Unmarshal(body, &input)
 
-	sqlStatement := "insert into study_log(user_id, category_id, time) values ($1, $2, $3);"
+	sqlStatement := "insert into study_log(user_id, category_id, memo, time) values ($1, $2, $3, $4);"
 
 	conn := fmt.Sprintf("host=%s user=%s password=%s dbname=%s sslmode=require", HOST, USER, PASSWORD, DATABASE)
 	db, _ := sql.Open("postgres", conn)
-	db.Exec(sqlStatement, userId, input.CategoryId, input.Time)
+	db.Exec(sqlStatement, userId, input.CategoryId, input.Memo, input.Time)
 
 	w.Header().Set("Content-Type", "application/json")
 	d := Output{http.StatusCreated}

@@ -1,5 +1,6 @@
 import 'package:injectable/injectable.dart';
 import 'package:yohidon/domain/category.dart';
+import 'package:yohidon/domain/memo.dart';
 import 'package:yohidon/domain/study_time.dart';
 import 'package:yohidon/state/register_view_state.dart';
 
@@ -27,6 +28,11 @@ class RegisterPresenter {
 
   void setCategoryName(CategoryName categoryName) {
     _state.categoryName = categoryName.value;
+    _state.updateComplete();
+  }
+
+  void setMemo(Memo memo) {
+    _state.memo = memo.value;
     _state.updateComplete();
   }
 }

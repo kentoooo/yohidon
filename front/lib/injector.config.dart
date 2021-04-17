@@ -22,9 +22,10 @@ import 'state/login_view_state.dart' as _i14;
 import 'state/register_view_state.dart' as _i17;
 import 'usecase/activity/get_activities_usecase.dart' as _i10;
 import 'usecase/category_registration_usecase.dart' as _i20;
-import 'usecase/change_page_usecase.dart' as _i21;
-import 'usecase/change_slider_usecase.dart' as _i22;
-import 'usecase/get_category_usecase.dart' as _i23;
+import 'usecase/change_memo_usecase.dart' as _i21;
+import 'usecase/change_page_usecase.dart' as _i22;
+import 'usecase/change_slider_usecase.dart' as _i23;
+import 'usecase/get_category_usecase.dart' as _i24;
 import 'usecase/login/login_usecase.dart' as _i15;
 import 'usecase/select_category_usecase.dart' as _i18;
 import 'usecase/study_register_usecase.dart'
@@ -59,11 +60,13 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.factory<_i20.CategoryRegistrationUsecase>(() =>
       _i20.CategoryRegistrationUsecase(get<_i4.CategoryPort>(),
           get<_i16.RegisterPresenter>(), get<_i6.UserCredentialPort>()));
-  gh.factory<_i21.ChangePageUsecase>(
-      () => _i21.ChangePageUsecase(get<_i11.HomePresenter>()));
-  gh.factory<_i22.ChangeSliderUsecase>(
-      () => _i22.ChangeSliderUsecase(get<_i16.RegisterPresenter>()));
-  gh.factory<_i23.GetCategoryUsecase>(() => _i23.GetCategoryUsecase(
+  gh.factory<_i21.ChangeMemoUsecase>(
+      () => _i21.ChangeMemoUsecase(get<_i16.RegisterPresenter>()));
+  gh.factory<_i22.ChangePageUsecase>(
+      () => _i22.ChangePageUsecase(get<_i11.HomePresenter>()));
+  gh.factory<_i23.ChangeSliderUsecase>(
+      () => _i23.ChangeSliderUsecase(get<_i16.RegisterPresenter>()));
+  gh.factory<_i24.GetCategoryUsecase>(() => _i24.GetCategoryUsecase(
       get<_i4.CategoryPort>(),
       get<_i16.RegisterPresenter>(),
       get<_i6.UserCredentialPort>()));

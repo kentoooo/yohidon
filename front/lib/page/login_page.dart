@@ -35,7 +35,7 @@ class LoginPage extends StatelessWidget {
                 Flexible(
                   child: Center(
                     child: Text(
-                      'Yohidon',
+                      'Yohidon!',
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 60,

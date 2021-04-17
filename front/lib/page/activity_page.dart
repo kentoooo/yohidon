@@ -57,7 +57,7 @@ class ActivityPage extends StatelessWidget {
                                   width: 13,
                                 ),
                                 Container(
-                                  width: 230,
+                                  width: 150,
                                   child: Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     mainAxisAlignment: MainAxisAlignment.center,

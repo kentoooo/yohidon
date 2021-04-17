@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yohidon/domain/category.dart';
+import 'package:yohidon/domain/memo.dart';
 import 'package:yohidon/domain/study_log.dart';
 import 'package:yohidon/domain/study_time.dart';
 import 'package:yohidon/injector.dart';
 import 'package:yohidon/state/register_view_state.dart';
 import 'package:yohidon/usecase/category_registration_usecase.dart';
+import 'package:yohidon/usecase/change_memo_usecase.dart';
 import 'package:yohidon/usecase/change_slider_usecase.dart';
 import 'package:yohidon/usecase/select_category_usecase.dart';
 import 'package:yohidon/usecase/study_register_usecase.dart';
@@ -23,7 +25,9 @@ class RegisterPage extends StatelessWidget {
             children: [
               TextField(
                 decoration: InputDecoration(
-                    border: OutlineInputBorder(),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(12))
+                    ),
                     labelText: 'カテゴリー名',
                 ),
                 onChanged: (input) {
@@ -40,13 +44,28 @@ class RegisterPage extends StatelessWidget {
               Divider(
                 thickness: 2.0,
               ),
-              DropdownButton(
-                value: state.selectedItem,
-                items: state.selectItems?.values
-                    .map((e) => DropdownMenuItem(value: e, child: Text(e.name)))
-                    .toList(),
-                onChanged: (SelectItem? item) => {
-                  getIt<SelectCategoryUsecase>().execute(item!.toCategory())
+              Container(
+                child: DropdownButton(
+                  value: state.selectedItem,
+                  items: state.selectItems?.values
+                      .map((e) => DropdownMenuItem(value: e, child: Text(e.name)))
+                      .toList(),
+                  onChanged: (SelectItem? item) => {
+                    getIt<SelectCategoryUsecase>().execute(item!.toCategory())
+                  },
+                ),
+              ),
+              TextField(
+                textInputAction: TextInputAction.newline,
+                maxLines: 3,
+                decoration: InputDecoration(
+                  hintText: 'メモ',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(12))
+                  ),
+                ),
+                onChanged: (input) {
+                  getIt<ChangeMemoUsecase>().execute(Memo(input));
                 },
               ),
               Slider(
@@ -70,6 +89,7 @@ class RegisterPage extends StatelessWidget {
                           CategoryId(state.selectedItem!.id),
                           CategoryName(state.selectedItem!.name),
                         ),
+                        Memo(state.memo),
                         StudyTime(state.rating),
                       ),
                     );

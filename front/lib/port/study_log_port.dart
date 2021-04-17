@@ -19,5 +19,5 @@ class StudyLogGateway extends StudyLogPort {
 
 extension StudyLogToStudyLogJson on StudyLog {
   StudyLogJson toStudyLogJson() =>
-      StudyLogJson(category.categoryId.value, studyTime.value);
+      StudyLogJson(category.categoryId.value, memo.value, studyTime.value);
 }

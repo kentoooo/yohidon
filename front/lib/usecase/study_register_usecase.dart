@@ -1,6 +1,5 @@
 import 'package:injectable/injectable.dart';
 import 'package:yohidon/domain/study_log.dart';
-import 'package:yohidon/domain/user_id.dart';
 import 'package:yohidon/port/study_log_port.dart';
 import 'package:yohidon/port/user_credential_port.dart';
 
