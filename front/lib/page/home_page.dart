@@ -17,20 +17,17 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
           brightness: Brightness.light,
-          backgroundColor: Colors.yellowAccent,
+          backgroundColor: Color(0xff7367F0),
           title: Text(
               'Yohidon',
               style: const TextStyle(
-                color: Colors.black,
+                color: Colors.white,
                 fontSize: 28.0,
                 fontWeight: FontWeight.bold,
                 letterSpacing: -1.2,
               )
           ),
           centerTitle: false,
-          actions: [
-            IconButton(icon: Icon(Icons.add_circle), iconSize: 30.0, color: Colors.black , onPressed: () {},)
-          ]
       ),
       body: _pageList.elementAt(state.currentIndex),
       bottomNavigationBar: BottomNavigationBar(
