@@ -17,6 +17,8 @@ class ActivityJson {
   final String categoryName;
   final double studyTime;
   final DateTime created;
-  ActivityJson(this.userId, this.userName, this.categoryId, this.categoryName, this.studyTime, this.created);
+  final String memo;
+
+  ActivityJson(this.userId, this.userName, this.categoryId, this.categoryName, this.studyTime, this.created, this.memo);
   factory ActivityJson.fromJson(Map<String, dynamic> json) => _$ActivityJsonFromJson(json);
 }

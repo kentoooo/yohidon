@@ -15,6 +15,7 @@ class ActivityPresenter {
               e.userName.value,
               e.timeSpent.value.toString(),
               e.activityDate.toString(),
+              e.memo.toDisplay(),
             ))
         .toList();
     _state.updateComplete();

@@ -27,6 +27,7 @@ ActivityJson _$ActivityJsonFromJson(Map<String, dynamic> json) {
     json['categoryName'] as String,
     (json['studyTime'] as num).toDouble(),
     DateTime.parse(json['created'] as String),
+    json['memo'] as String,
   );
 }
 
@@ -38,4 +39,5 @@ Map<String, dynamic> _$ActivityJsonToJson(ActivityJson instance) =>
       'categoryName': instance.categoryName,
       'studyTime': instance.studyTime,
       'created': instance.created.toIso8601String(),
+      'memo': instance.memo,
     };

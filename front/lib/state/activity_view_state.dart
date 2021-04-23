@@ -16,6 +16,7 @@ class ActivityItem {
   final String userName;
   final String timeSpent;
   final String activityDate;
+  final String memo;
 
-  ActivityItem(this.activityName, this.userName, this.timeSpent, this.activityDate);
+  ActivityItem(this.activityName, this.userName, this.timeSpent, this.activityDate, this.memo);
 }

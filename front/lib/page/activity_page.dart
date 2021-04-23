@@ -28,7 +28,7 @@ class ActivityPage extends StatelessWidget {
                         height: 100,
                         margin: EdgeInsets.only(bottom: 13),
                         padding: EdgeInsets.only(
-                            left: 24, top: 12, bottom: 12, right: 12),
+                            left: 18, top: 12, bottom: 12, right: 12),
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(15),
                             color: Colors.white70,
@@ -46,15 +46,33 @@ class ActivityPage extends StatelessWidget {
                             Row(
                               children: [
                                 Container(
-                                  height: 67,
-                                  width: 57,
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: Colors.blue,
+                                  width: 130,
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        state.items[index].userName,
+                                        style: TextStyle(
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w700,
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                      Text(
+                                        state.items[index].activityName,
+                                        style: TextStyle(
+                                          fontSize: 13,
+                                          fontWeight: FontWeight.w700,
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                      Text(state.items[index].activityDate),
+                                    ],
                                   ),
                                 ),
                                 SizedBox(
-                                  width: 13,
+                                  width: 6,
                                 ),
                                 Container(
                                   width: 150,
@@ -62,16 +80,7 @@ class ActivityPage extends StatelessWidget {
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      Text(
-                                        state.items[index].userName,
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w700,
-                                          color: Colors.black,
-                                        ),
-                                      ),
-                                      Text(state.items[index].activityName),
-                                      Text(state.items[index].activityDate),
+                                      Text(state.items[index].memo),
                                     ],
                                   ),
                                 ),

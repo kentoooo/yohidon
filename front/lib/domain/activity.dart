@@ -3,6 +3,7 @@ import 'package:yohidon/domain/category.dart';
 import 'package:yohidon/domain/user_id.dart';
 
 import 'fcc.dart';
+import 'memo.dart';
 
 class Activities extends FCC<Activity> {
   @override
@@ -16,8 +17,9 @@ class Activity {
   final ActivityName activityName;
   final TimeSpent timeSpent;
   final ActivityDate activityDate;
+  final Memo memo;
 
-  Activity(this.userId, this.userName, this.activityName, this.timeSpent, this.activityDate);
+  Activity(this.userId, this.userName, this.activityName, this.timeSpent, this.activityDate, this.memo);
 }
 
 class UserName {

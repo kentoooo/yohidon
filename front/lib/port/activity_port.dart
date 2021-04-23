@@ -1,5 +1,6 @@
 import 'package:injectable/injectable.dart';
 import 'package:yohidon/domain/activity.dart';
+import 'package:yohidon/domain/memo.dart';
 import 'package:yohidon/domain/user_id.dart';
 import 'package:yohidon/driver/activity_json.dart';
 import 'package:yohidon/driver/yohidon_api.dart';
@@ -18,12 +19,14 @@ class ActivityGateway extends ActivityPort {
 }
 
 extension JsonToActivities on ActivitiesJson {
-  Activities toActivities() =>
-      Activities(activities.map((a) => Activity(
-          UserId(a.userId),
-          UserName(a.userName),
-          ActivityName(a.categoryName),
-          TimeSpent(a.studyTime),
-          ActivityDate.of(a.created))).toList());
+  Activities toActivities() => Activities(activities
+      .map((a) => Activity(
+            UserId(a.userId),
+            UserName(a.userName),
+            ActivityName(a.categoryName),
+            TimeSpent(a.studyTime),
+            ActivityDate.of(a.created),
+            Memo(a.memo),
+          ))
+      .toList());
 }
-
