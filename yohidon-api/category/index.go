@@ -44,7 +44,7 @@ func Handler(w http.ResponseWriter, req *http.Request) {
 		fmt.Println(err)
 	}
 
-	sql_statement := "insert into category values($1, $2, $3);"
+	sql_statement := "insert into category(user_id, category_id, category_name) values($1, $2, $3);"
 	db.Exec(sql_statement, userId, uuid, input.CategoryName)
 
 	w.Header().Set("Content-Type", "application/json")
