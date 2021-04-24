@@ -53,8 +53,8 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       get<_i6.UserCredentialPort>(), get<_i13.LoginPresenter>()));
   gh.factory<_i16.RegisterPresenter>(
       () => _i16.RegisterPresenter(get<_i17.RegisterViewState>()));
-  gh.factory<_i18.SelectCategoryUsecase>(
-      () => _i18.SelectCategoryUsecase(get<_i16.RegisterPresenter>()));
+  gh.factory<_i18.SelectCategoryUsecase>(() => _i18.SelectCategoryUsecase(
+      get<_i16.RegisterPresenter>(), get<_i4.CategoryPort>()));
   gh.factory<_i19.StudyRegisterUsecase>(() => _i19.StudyRegisterUsecase(
       get<_i5.StudyLogPort>(), get<_i6.UserCredentialPort>()));
   gh.factory<_i20.CategoryRegistrationUsecase>(() =>

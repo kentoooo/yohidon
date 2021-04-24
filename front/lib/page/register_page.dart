@@ -81,6 +81,17 @@ class RegisterPage extends StatelessWidget {
                 },
               ),
             ),
+            Container(
+              child: DropdownButton(
+                value: state.selectedChildCategory,
+                items: state.childCategories?.values
+                    .map((e) => DropdownMenuItem(value: e, child: Text(e.name)))
+                    .toList(),
+                onChanged: (SelectItem? item) => {
+                  getIt<SelectCategoryUsecase>().selectChildCategory(item!.toCategory())
+                },
+              ),
+            ),
             TextField(
               textInputAction: TextInputAction.done,
               maxLines: 3,

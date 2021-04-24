@@ -14,6 +14,11 @@ class YohidonApi {
     return CategoriesJson.fromJson(jsonDecode(response.body));
   }
 
+  Future<CategoriesJson> getChildCategories(String categoryId) async {
+    final response = await http.get(Uri.https(endpoint, '/categories/$categoryId/children'));
+    return CategoriesJson.fromJson(jsonDecode(response.body));
+  }
+
   Future<ActivitiesJson> getActivities() async {
     final response = await http.get(Uri.https(endpoint, '/activities'));
     return ActivitiesJson.fromJson(jsonDecode(response.body));

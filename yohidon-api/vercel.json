@@ -15,6 +15,10 @@
         "use": "@vercel/go"
       },
       {
+        "src": "/category/children/get/*.go",
+        "use": "@vercel/go"
+      },
+      {
         "src": "/study-log/post/*.go",
         "use": "@vercel/go"
       },
@@ -37,6 +41,11 @@
         "src": "/users/(?<id>[^/]*)/categories",
         "methods": ["POST"],
         "dest": "/category"
+      },
+      {
+        "src": "/categories/(?<id>[^/]*)/children",
+        "methods": ["GET"],
+        "dest": "/category/children/get"
       },
       {
         "src": "/activities",

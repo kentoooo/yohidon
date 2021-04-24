@@ -15,7 +15,9 @@ class GetCategoryUsecase extends ChangeNotifier {
   Future<void> execute() async {
     final userCredential = await _userCredentialPort.get();
     final categories = await _categoryPort.findAll(userCredential!.userid);
+    final childCategories = await _categoryPort.findChildCategories(categories.first.categoryId);
     _presenter.setCategories(categories);
+    _presenter.setChildCategories(childCategories);
   }
 
 }

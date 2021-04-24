@@ -16,8 +16,19 @@ class RegisterPresenter {
     _state.updateComplete();
   }
 
+  void setChildCategories(Categories categories) {
+    _state.childCategories = SelectItems(categories.list.map((e) => SelectItem(e.categoryId.value, e.categoryName.value)).toList());
+    _state.selectedChildCategory = SelectItem(categories.first.categoryId.value, categories.first.categoryName.value);
+    _state.updateComplete();
+  }
+
   void setSelectedCategory(Category category) {
     _state.selectedItem = SelectItem(category.categoryId.value, category.categoryName.value);
+    _state.updateComplete();
+  }
+
+  void setSelectedChildCategory(Category category) {
+    _state.selectedChildCategory = SelectItem(category.categoryId.value, category.categoryName.value);
     _state.updateComplete();
   }
 
