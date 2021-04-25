@@ -8,6 +8,7 @@ import 'package:yohidon/page/home_page.dart';
 import 'package:yohidon/port/user_credential_port.dart';
 import 'package:yohidon/presenter/login_presenter.dart';
 import 'package:yohidon/state/activity_view_state.dart';
+import 'package:yohidon/state/category_list_view_state.dart';
 import 'package:yohidon/state/home_view_state.dart';
 import 'package:yohidon/state/register_view_state.dart';
 import 'package:yohidon/usecase/activity/get_activities_usecase.dart';
@@ -28,9 +29,9 @@ class LoginUsecase {
         MaterialPageRoute(
           builder: (context) => MultiProvider(
               providers: [
-                ChangeNotifierProvider(create: (_) => getIt<RegisterViewState>()),
-                ChangeNotifierProvider(create: (_) => getIt<HomeViewState>()),
-                ChangeNotifierProvider(create: (_) => getIt<ActivityViewState>()),
+                ChangeNotifierProvider.value(value: getIt<RegisterViewState>()),
+                ChangeNotifierProvider.value(value: getIt<HomeViewState>()),
+                ChangeNotifierProvider.value(value: getIt<ActivityViewState>()),
               ],
             builder: (context, child) => HomePage(),
           )

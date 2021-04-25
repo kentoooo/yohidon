@@ -2,10 +2,15 @@ import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:yohidon/injector.dart';
 import 'package:yohidon/page/activity_page.dart';
+import 'package:yohidon/page/categories_page.dart';
 import 'package:yohidon/page/record_page.dart';
 import 'package:yohidon/page/register_page.dart';
+import 'package:yohidon/state/activity_view_state.dart';
+import 'package:yohidon/state/category_list_view_state.dart';
 import 'package:yohidon/state/home_view_state.dart';
+import 'package:yohidon/state/register_view_state.dart';
 import 'package:yohidon/usecase/change_page_usecase.dart';
+import 'package:yohidon/usecase/get_category_usecase.dart';
 
 class HomePage extends StatelessWidget {
 
@@ -28,6 +33,23 @@ class HomePage extends StatelessWidget {
               )
           ),
           centerTitle: false,
+          actions: [
+            IconButton(icon: Icon(Icons.add_circle), iconSize: 30.0, color: Colors.black , onPressed: () {
+
+              getIt<GetCategoryUsecase>().getCategories();
+
+              Navigator.of(context).push(
+                  MaterialPageRoute(
+                      builder: (context) => MultiProvider(
+                        providers: [
+                          ChangeNotifierProvider.value(value: getIt<CategoryListViewState>(), child: CategoriesPage(),),
+                        ],
+                        builder: (context, child) => CategoriesPage(),
+                      )
+                  )
+              );
+            },),
+          ],
       ),
       body: _pageList.elementAt(state.currentIndex),
       bottomNavigationBar: BottomNavigationBar(
