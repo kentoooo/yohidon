@@ -15,4 +15,15 @@ class ChildCategoryListPresenter {
         .toList());
     _state.updateComplete();
   }
+
+  void setCategoryName(CategoryName categoryName) {
+    _state.categoryName = categoryName.value;
+    _state.updateComplete();
+  }
+
+  void setParentCategoryId(CategoryId categoryId) {
+    _state.parentCategoryId = categoryId.value;
+    _state.updateComplete();
+  }
+
 }

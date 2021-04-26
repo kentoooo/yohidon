@@ -14,4 +14,9 @@ class CategoryListPresenter {
         .toList());
     _state.updateComplete();
   }
+
+  void setCategoryName(CategoryName categoryName) {
+    _state.categoryName = categoryName.value;
+    _state.updateComplete();
+  }
 }

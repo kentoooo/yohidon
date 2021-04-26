@@ -12,7 +12,7 @@ class CategoryListViewState extends ChangeNotifier with ViewState {
   }
 
   CategoryList categoryList = CategoryList([]);
-
+  String categoryName = "";
 }
 
 class CategoryList {

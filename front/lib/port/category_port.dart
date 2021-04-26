@@ -8,6 +8,7 @@ abstract class CategoryPort {
   Future<Categories> findAll(UserId userId);
   Future<Categories> findChildCategories(CategoryId categoryId);
   Future<void> save(UserId userId, CategoryName categoryName);
+  Future<void> saveChildCategory(UserId userId, CategoryId categoryId, CategoryName categoryName);
 }
 
 @Injectable(as: CategoryPort)
@@ -31,5 +32,10 @@ class CategoryGateway extends CategoryPort {
 
   Categories _toCategories(CategoriesJson json) => Categories(json.categories.map((e) => _toCategory(e)).toList());
   Category _toCategory(CategoryJson json) => Category(CategoryId(json.id), CategoryName(json.name));
+
+  @override
+  Future<void> saveChildCategory(UserId userId, CategoryId categoryId, CategoryName categoryName) async {
+    await YohidonApi().postCategoryChildren(userId.value, categoryId.value, PostCategoryJson(categoryName.value));
+  }
 
 }

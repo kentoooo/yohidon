@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:yohidon/state/activity_view_state.dart';
-import 'package:yohidon/state/category_list_view_state.dart';
+import 'package:yohidon/domain/category.dart';
 import 'package:yohidon/state/child_category_list_view_state.dart';
-import 'package:yohidon/state/home_view_state.dart';
-import 'package:yohidon/state/register_view_state.dart';
+import 'package:yohidon/usecase/category_registration_usecase.dart';
 
 import '../injector.dart';
-import 'categories_page.dart';
 
 class ChildCategoryListPage extends StatelessWidget {
   @override
@@ -28,9 +25,58 @@ class ChildCategoryListPage extends StatelessWidget {
       ),
       body: ListView.builder(
         itemCount: state.childCategoryList.values.length,
-        itemBuilder: (_, index) => ListTile(
-          title: Text(state.childCategoryList.values[index].name),
+        itemBuilder: (_, index) => Container(
+          padding: EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+          decoration: BoxDecoration(
+            border: Border(
+                bottom: BorderSide(
+                  color: Colors.grey,
+                  width: 0.5,
+                )
+            ),
+          ),
+          child: ListTile(
+            title: Text(state.childCategoryList.values[index].name),
+          ),
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () {
+          showDialog(
+            context: context,
+            builder: (_) {
+              return AlertDialog(
+                content: TextField(
+                  onChanged: ((input) => {
+                        getIt<CategoryRegistrationUsecase>()
+                            .inputChildCategoryName(
+                                CategoryId(state.parentCategoryId),
+                                CategoryName(input))
+                      }),
+                ),
+                actions: [
+                  TextButton(
+                    child: Text('キャンセル'),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                  ),
+                  TextButton(
+                    child: Text('登録'),
+                    onPressed: () {
+                      getIt<CategoryRegistrationUsecase>()
+                          .registerChildCategory(
+                              CategoryId(state.parentCategoryId),
+                              CategoryName(state.categoryName));
+                      Navigator.pop(context);
+                    },
+                  ),
+                ],
+              );
+            },
+          );
+        },
       ),
     );
   }

@@ -6,16 +6,17 @@ import 'package:yohidon/driver/category_json.dart';
 import 'package:yohidon/driver/study_log_json.dart';
 
 class YohidonApi {
-
   final endpoint = "yohidon-api-kentoooo.vercel.app";
 
   Future<CategoriesJson> getCategories(String userId) async {
-    final response = await http.get(Uri.https(endpoint, '/users/$userId/categories'));
+    final response =
+        await http.get(Uri.https(endpoint, '/users/$userId/categories'));
     return CategoriesJson.fromJson(jsonDecode(response.body));
   }
 
   Future<CategoriesJson> getChildCategories(String categoryId) async {
-    final response = await http.get(Uri.https(endpoint, '/categories/$categoryId/children'));
+    final response =
+        await http.get(Uri.https(endpoint, '/categories/$categoryId/children'));
     return CategoriesJson.fromJson(jsonDecode(response.body));
   }
 
@@ -38,5 +39,11 @@ class YohidonApi {
       body: json.encode(param.toJson()),
       headers: {"Content-Type": "application/json"},
     );
+  }
+
+  Future<void> postCategoryChildren(String userId, String categoryId, PostCategoryJson param) async {
+    await http.post(Uri.https(endpoint, '/users/$userId/categories/$categoryId/children'),
+        body: json.encode(param.toJson()),
+        headers: {"Content-Type": "application/json"});
   }
 }

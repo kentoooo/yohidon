@@ -11,6 +11,8 @@ class ChildCategoryListViewState extends ChangeNotifier with ViewState {
   }
 
   ChildCategoryList childCategoryList = ChildCategoryList([]);
+  String categoryName = "";
+  String parentCategoryId = "";
 }
 
 class ChildCategoryList {

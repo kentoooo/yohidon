@@ -33,6 +33,7 @@ class GetCategoryUsecase extends ChangeNotifier {
 
   Future<void> getChildCategories(CategoryId categoryId) async {
     final categories = await _categoryPort.findChildCategories(categoryId);
+    _childCategoryListPresenter.setParentCategoryId(categoryId);
     _childCategoryListPresenter.setChildCategories(categories);
   }
 
