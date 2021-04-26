@@ -5,7 +5,6 @@ import 'package:yohidon/page/activity_page.dart';
 import 'package:yohidon/page/categories_page.dart';
 import 'package:yohidon/page/record_page.dart';
 import 'package:yohidon/page/register_page.dart';
-import 'package:yohidon/state/activity_view_state.dart';
 import 'package:yohidon/state/category_list_view_state.dart';
 import 'package:yohidon/state/home_view_state.dart';
 import 'package:yohidon/state/register_view_state.dart';
@@ -34,7 +33,7 @@ class HomePage extends StatelessWidget {
           ),
           centerTitle: false,
           actions: [
-            IconButton(icon: Icon(Icons.add_circle), iconSize: 30.0, color: Colors.black , onPressed: () {
+            IconButton(icon: Icon(Icons.category_outlined), iconSize: 30.0, color: Colors.black , onPressed: () {
 
               getIt<GetCategoryUsecase>().getCategories();
 
@@ -43,6 +42,7 @@ class HomePage extends StatelessWidget {
                       builder: (context) => MultiProvider(
                         providers: [
                           ChangeNotifierProvider.value(value: getIt<CategoryListViewState>(), child: CategoriesPage(),),
+                          ChangeNotifierProvider.value(value: getIt<RegisterViewState>(), child: CategoriesPage(),),
                         ],
                         builder: (context, child) => CategoriesPage(),
                       )
