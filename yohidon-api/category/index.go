@@ -40,6 +40,7 @@ func Handler(w http.ResponseWriter, req *http.Request) {
 
 	conn := fmt.Sprintf("host=%s user=%s password=%s dbname=%s sslmode=require", HOST, USER, PASSWORD, DATABASE)
 	db, err := sql.Open("postgres", conn)
+	defer db.Close()
 	if err != nil {
 		fmt.Println(err)
 	}

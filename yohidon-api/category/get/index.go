@@ -30,6 +30,7 @@ type category struct {
 func Handler(w http.ResponseWriter, req *http.Request) {
 	conn := fmt.Sprintf("host=%s user=%s password=%s dbname=%s sslmode=require", HOST, USER, PASSWORD, DATABASE)
 	db, _ := sql.Open("postgres", conn)
+	defer db.Close()
 	userId := strings.Split(req.URL.Path, "/")[2]
 	sqlStatement := "select category_id, category_name from category where user_id = $1 and parent_id is null;"
 	rows, _ := db.Query(sqlStatement, userId)

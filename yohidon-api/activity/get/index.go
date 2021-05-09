@@ -35,6 +35,7 @@ type activity struct {
 func Handler(w http.ResponseWriter, req *http.Request) {
 	conn := fmt.Sprintf("host=%s user=%s password=%s dbname=%s sslmode=require", HOST, USER, PASSWORD, DATABASE)
 	db, _ := sql.Open("postgres", conn)
+	defer db.Close()
 	sqlStatement := "select u.user_id, u.user_name, c.category_id, s.time, s.created, c.category_name, s.memo from users u inner join study_log s on u.user_id = s.user_id inner join category c on c.category_id = s.category_id order by s.created desc limit 20;"
 	rows, _ := db.Query(sqlStatement)
 
