@@ -9,14 +9,12 @@ class YohidonApi {
   final endpoint = "yohidon-api-kentoooo.vercel.app";
 
   Future<CategoriesJson> getCategories(String userId) async {
-    final response =
-        await http.get(Uri.https(endpoint, '/users/$userId/categories'));
+    final response = await http.get(Uri.https(endpoint, '/users/$userId/categories'));
     return CategoriesJson.fromJson(jsonDecode(response.body));
   }
 
   Future<CategoriesJson> getChildCategories(String categoryId) async {
-    final response =
-        await http.get(Uri.https(endpoint, '/categories/$categoryId/children'));
+    final response = await http.get(Uri.https(endpoint, '/categories/$categoryId/children'));
     return CategoriesJson.fromJson(jsonDecode(response.body));
   }
 

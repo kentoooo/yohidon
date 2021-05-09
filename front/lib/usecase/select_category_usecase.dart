@@ -16,6 +16,7 @@ class SelectCategoryUsecase extends ChangeNotifier {
     _presenter.setSelectedCategory(category);
     final children = await _categoryPort.findChildCategories(category.categoryId);
     _presenter.setChildCategories(children);
+    _presenter.setSelectedChildCategory(children.first);
   }
 
   void selectChildCategory(Category category) async {

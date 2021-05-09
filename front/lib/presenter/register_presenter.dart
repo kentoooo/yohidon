@@ -18,7 +18,7 @@ class RegisterPresenter {
 
   void setChildCategories(Categories categories) {
     _state.childCategories = SelectItems(categories.list.map((e) => SelectItem(e.categoryId.value, e.categoryName.value)).toList());
-    _state.selectedChildCategory = SelectItem(categories.first.categoryId.value, categories.first.categoryName.value);
+    _state.selectedChildCategory = categories.isEmpty ? SelectItem("", "") : SelectItem(categories.first.categoryId.value, categories.first.categoryName.value);
     _state.updateComplete();
   }
 

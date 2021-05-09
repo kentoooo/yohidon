@@ -17,45 +17,64 @@ class RegisterPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final state = context.watch<RegisterViewState>();
     return Container(
-      padding: EdgeInsets.all(24),
+      padding: EdgeInsets.all(36),
       child: Center(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Container(
-              child: DropdownButton(
-                value: state.selectedItem,
-                items: state.selectItems?.values
-                    .map((e) => DropdownMenuItem(value: e, child: Text(e.name)))
-                    .toList(),
-                onChanged: (SelectItem? item) => {
-                  getIt<SelectCategoryUsecase>().execute(item!.toCategory())
-                },
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('親カテゴリー'),
+                  DropdownButton(
+                    isExpanded: true,
+                    value: state.selectedItem,
+                    items: state.selectItems?.values
+                        .map((e) =>
+                            DropdownMenuItem(value: e, child: Text(e.name)))
+                        .toList(),
+                    onChanged: (SelectItem? item) => {
+                      getIt<SelectCategoryUsecase>().execute(item!.toCategory())
+                    },
+                  ),
+                ],
               ),
             ),
             Container(
-              child: DropdownButton(
-                value: state.selectedChildCategory,
-                items: state.childCategories?.values
-                    .map((e) => DropdownMenuItem(value: e, child: Text(e.name)))
-                    .toList(),
-                onChanged: (SelectItem? item) => {
-                  getIt<SelectCategoryUsecase>().selectChildCategory(item!.toCategory())
-                },
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('子カテゴリー'),
+                  DropdownButton(
+                    isExpanded: true,
+                    value: state.selectedChildCategory,
+                    items: state.childCategories?.values
+                        .map((e) =>
+                            DropdownMenuItem(value: e, child: Text(e.name)))
+                        .toList(),
+                    onChanged: (SelectItem? item) => {
+                      getIt<SelectCategoryUsecase>()
+                          .selectChildCategory(item!.toCategory())
+                    },
+                  ),
+                ],
               ),
             ),
-            TextField(
-              textInputAction: TextInputAction.done,
-              maxLines: 3,
-              decoration: InputDecoration(
-                hintText: 'メモ',
-                border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(12))),
+            Container(
+              child: TextField(
+                textInputAction: TextInputAction.done,
+                maxLines: 3,
+                decoration: InputDecoration(
+                  hintText: 'メモ',
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(12))),
+                ),
+                onChanged: (input) {
+                  getIt<ChangeMemoUsecase>().execute(Memo(input));
+                },
               ),
-              onChanged: (input) {
-                getIt<ChangeMemoUsecase>().execute(Memo(input));
-              },
             ),
             Slider(
               value: state.rating,
@@ -77,8 +96,9 @@ class RegisterPage extends StatelessWidget {
                 showCupertinoDialog(
                   context: context,
                   builder: (_) => CupertinoAlertDialog(
-                    content: Text(
-                        "${state.selectedItem!.name} ${state.rating}時間で登録します"),
+                    content: Text(state.selectedChildCategory!.id != ""
+                        ? "「${state.selectedItem!.name}」の「${state.selectedChildCategory!.name}」\n${state.rating}時間で登録します"
+                        : "「${state.selectedItem!.name}」\n${state.rating}時間で登録します"),
                     actions: [
                       CupertinoDialogAction(
                         child: Text("No"),
@@ -90,10 +110,14 @@ class RegisterPage extends StatelessWidget {
                         child: Text("Yes"),
                         onPressed: () {
                           getIt<StudyRegisterUsecase>().execute(
-                            StudyLog(
-                              Category(
+                            StudyLog.of(
+                              ParentCategory(
                                 CategoryId(state.selectedItem!.id),
                                 CategoryName(state.selectedItem!.name),
+                              ),
+                              ChildCategory(
+                                CategoryId(state.selectedChildCategory!.id),
+                                CategoryName(state.selectedChildCategory!.name),
                               ),
                               Memo(state.memo),
                               StudyTime(state.rating),

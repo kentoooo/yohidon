@@ -18,6 +18,7 @@ class StudyLogGateway extends StudyLogPort {
 }
 
 extension StudyLogToStudyLogJson on StudyLog {
-  StudyLogJson toStudyLogJson() =>
-      StudyLogJson(category.categoryId.value, memo.value, studyTime.value);
+  StudyLogJson toStudyLogJson() {
+    return StudyLogJson(childCategory != null ? childCategory!.categoryId.value : parentCategory.categoryId.value, memo.value, studyTime.value);
+  }
 }
